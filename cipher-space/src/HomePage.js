@@ -10,6 +10,10 @@ function HomePage(){
     function navigateToAboutPage() {
         navigate('/page1');
       }
+
+      function navigateToSnagPage() {
+        navigate('/snag');
+      }
     
 
     return(
@@ -17,6 +21,7 @@ function HomePage(){
         <p> Home Page</p>
  
         <button onClick={navigateToAboutPage}>Go to Page 1</button>
+        <button onClick={navigateToSnagPage}>Go to Snag's page</button>
         </>
     )
 }
