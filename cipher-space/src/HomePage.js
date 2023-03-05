@@ -3,10 +3,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import "./HomePage.css"
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function HomePage(){
     const navigate = useNavigate();
     const [level, setLevel] = useState("EASY")
+   
 
     function navigateToAboutPage() {
         navigate('/page1', { state: { level } });
@@ -22,7 +24,11 @@ function HomePage(){
        //  console.log(level)
       }
 
-    
+      
+      useEffect(() => {
+        document.title = `CIPHER SCAPE`; // Change the title of the page
+      }, []);
+      
     
 
     return(

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { useLocation, useParams, useEffect } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import "./Easy.css"
 
@@ -26,16 +26,12 @@ const TOBE_DECRYPTED = [
     "why dont skeletons fight each other they dont have the guts",
     "why dont oysters give to charity because theyre shellfish"
 ];
-const RAN = TOBE_DECRYPTED[Math.floor(Math.random() * TOBE_DECRYPTED.length)];
+let RAN = TOBE_DECRYPTED[Math.floor(Math.random() * TOBE_DECRYPTED.length)];
 const RANSTR_INDEX_VAUE = RAN.length;
-console.log(RANSTR_INDEX_VAUE);
-console.log(RAN);
-
 let GUESSES = 10;
 let COUNTER = 0;
-const reversed_cipher = RAN.split('').reverse().join('');
-console.log('Decrypt the following below: ' + reversed_cipher + '\n');
-console.log('**\n');
+let reversed_cipher = RAN.split('').reverse().join('');
+
 
 function Page1() {
 
@@ -52,6 +48,7 @@ function Page1() {
     function checkAnswer() {
         if (answer == RAN) {
             window.alert("You are correct")
+          //  RAN = TOBE_DECRYPTED[Math.floor(Math.random() * TOBE_DECRYPTED.length)];
             navigate('/');
         }
         else {
@@ -61,9 +58,24 @@ function Page1() {
 
         if (GUESSES == 0) {
             window.alert("Game Over")
+           
             navigate('/');
         }
     }
+
+    function giveHint()
+    {
+        window.alert(RAN)
+    }
+
+    function refresh()
+    {
+        window.location.reload()
+    }
+
+    useEffect(() => {
+        document.title = `${level} MODE`; // Change the title of the page
+      }, []);
 
     return (
         <div className='play-page'>
@@ -84,6 +96,14 @@ function Page1() {
                     style={{ textAlign: "center" }} />
                 <div>
                     <button className='submit-button' onClick={checkAnswer}> SUBMIT</button>
+                </div>
+
+                <div>
+                    <button className='submit-button' onClick={refresh}> TRY A DIFFERENT ONE</button>
+                </div>
+
+                <div>
+                <button className='submit-button' onClick={giveHint}> NEED A HINT?</button>
                 </div>
             </div>
         </>
